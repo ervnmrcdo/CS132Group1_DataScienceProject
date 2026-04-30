@@ -1,57 +1,62 @@
 <!doctype html>
-<!--
-	Miniport by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
   <head>
-    <title>PH Twitter Fake News Analysis</title>
+    <title>Philippine Regional Analysis - Data Science Project</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="css/main.css" />
   </head>
   <body class="is-preload">
     <!-- Nav -->
     <nav id="nav">
       <ul class="container">
-        <li><a href="#top">Top</a></li>
+        <li><a href="#top">Home</a></li>
         <li><a href="#overview">Overview</a></li>
+        <li><a href="#objectives">Objectives</a></li>
         <li><a href="#data">Data</a></li>
-        <li><a href="#methods">Methods</a></li>
+        <li><a href="#methodology">Methodology</a></li>
         <li><a href="#results">Results</a></li>
         <li><a href="#team">Team</a></li>
       </ul>
     </nav>
 
-    <!-- Home -->
+    <!-- Home / Hero -->
     <article id="top" class="wrapper style1">
       <div class="container">
         <div class="row">
           <div class="col-4 col-5-large col-12-medium">
-            <span class="image fit"><img src="images/pic00.jpg" alt="" /></span>
+            <span class="image fit"
+              ><img src="images/pic00.jpg" alt="Philippine Map Visualization"
+            /></span>
           </div>
           <div class="col-8 col-7-large col-12-medium">
             <header>
-              <h1>Hi. We are <strong>Group 1</strong>.</h1>
+              <h1><strong>Philippine Regional Analysis</strong></h1>
+              <h2>A Data Science Approach</h2>
             </header>
             <p>
-              And this is our project, <strong>Project Title</strong>,
-              <em>a short explanation of the project objectives</em>. Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat.
+              This project examines <strong>two key objectives</strong> to understand
+              regional economic dynamics in the Philippines:
             </p>
-            <p>Data Science Team</p>
-            <ul style="list-style-type: none; margin-top: -30px">
-              <li>Estabillo</li>
-              <li>Mercado</li>
-              <li>Pulumbarit</li>
+            <ul class="objectives-list">
+              <li>
+                <strong>Objective 1:</strong> Geographic Center of Gravity Migration
+                - Tracking how economic centers shift across regions over time
+              </li>
+              <li>
+                <strong>Objective 2:</strong> Investment Density by Region -
+                Analyzing investment concentration and distribution patterns
+              </li>
             </ul>
+            <p>
+              <em
+                >Using data-driven insights to reveal spatial and temporal
+                trends in Philippine regional development.</em
+              >
+            </p>
           </div>
         </div>
       </div>
@@ -61,191 +66,285 @@
     <article id="overview" class="wrapper style2">
       <div class="container">
         <header>
-          <h2>Here's an overview of our project.</h2>
-          <p>Odio turpis amet sed consequat eget posuere consequat.</p>
+          <h2>Project Overview</h2>
+          <p>Understanding regional dynamics through spatial analysis</p>
         </header>
         <div class="row aln-center">
           <div class="col-4 col-6-medium col-12-small">
             <section class="box style1">
-              <span class="icon featured fa-comments"></span>
+              <span class="icon solid featured fa-globe-asia"></span>
               <h3>Motivation</h3>
               <p>
-                Ornare nulla proin odio consequat sapien vestibulum ipsum primis
-                sed amet consequat lorem dolore.
+                Regional economic disparities in the Philippines have significant
+                implications for policy-making and development planning.
               </p>
             </section>
           </div>
           <div class="col-4 col-6-medium col-12-small">
             <section class="box style1">
-              <span class="icon solid featured fa-camera-retro"></span>
+              <span class="icon solid featured fa-map-marker-alt"></span>
               <h3>Problem</h3>
               <p>
-                Ornare nulla proin odio consequat sapien vestibulum ipsum primis
-                sed amet consequat lorem dolore.
+                Understanding how economic activity migrates and where investments
+                concentrate is crucial for targeted development strategies.
               </p>
             </section>
           </div>
           <div class="col-4 col-6-medium col-12-small">
             <section class="box style1">
-              <span class="icon featured fa-thumbs-up"></span>
+              <span class="icon solid featured fa-chart-line"></span>
               <h3>Solution</h3>
               <p>
-                Ornare nulla proin odio consequat sapien vestibulum ipsum primis
-                sed amet consequat lorem dolore.
+                Apply spatial analysis techniques to identify center of gravity
+                migration patterns and investment density clusters.
               </p>
             </section>
           </div>
         </div>
-        <footer>
-          <p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p>
-          <a href="#portfolio" class="button large scrolly"
-            >Let's take a look at our data</a
-          >
-        </footer>
+      </div>
+    </article>
+
+    <!-- Objectives -->
+    <article id="objectives" class="wrapper style3">
+      <div class="container">
+        <header>
+          <h2>Research Objectives</h2>
+          <p>Two complementary analyses for regional economic insights</p>
+        </header>
+        <div class="row">
+          <div class="col-6 col-6-medium col-12-small">
+            <article class="box style2">
+              <h3>Objective 1</h3>
+              <h2>Geographic Center of Gravity Migration</h2>
+              <p>
+                This objective focuses on tracking how the geographic center
+                of economic activity shifts across Philippine regions over
+                time. By calculating the weighted centroid of economic
+                metrics, we can visualize and quantify the direction
+                and magnitude of regional economic migration patterns.
+              </p>
+              <ul class="feature-list">
+                <li>Temporal analysis of economic center movement</li>
+                <li>Regional migration patterns</li>
+                <li>Growth trajectory visualization</li>
+              </ul>
+            </article>
+          </div>
+          <div class="col-6 col-6-medium col-12-small">
+            <article class="box style2">
+              <h3>Objective 2</h3>
+              <h2>Investment Density by Region</h2>
+              <p>
+                This objective analyzes how investment capital is
+                distributed across different Philippine regions. By mapping
+                investment density, we identify concentration hotspots and
+                underserved areas, providing insights for balanced
+                regional development planning.
+              </p>
+              <ul class="feature-list">
+                <li>Investment heat mapping by region</li>
+                <li>Density concentration analysis</li>
+                <li>Regional investment disparities</li>
+              </ul>
+            </article>
+          </div>
+        </div>
       </div>
     </article>
 
     <!-- Data -->
-    <article id="data" class="wrapper style3">
+    <article id="data" class="wrapper style2">
       <div class="container">
         <header>
-          <h2>We mined the internet for fake news data.</h2>
-          <p>
-            Proin odio consequat sapien vestibulum consequat lorem dolore
-            feugiat.
-          </p>
+          <h2>Data Sources</h2>
+          <p>Reliable datasets for Philippine regional analysis</p>
         </header>
         <div class="row">
           <div class="col-4 col-6-medium col-12-small">
             <article class="box style2">
               <a href="#" class="image featured"
-                ><img src="images/pic01.jpg" alt=""
+                ><img src="images/pic01.jpg" alt="Regional Data"
               /></a>
-              <h3><a href="#">Topic</a></h3>
-              <p>Ornare nulla proin odio consequat.</p>
+              <h3>Regional Economic Data</h3>
+              <p>
+                GDP, employment rates, and economic indicators by
+                province and region.
+              </p>
             </article>
           </div>
           <div class="col-4 col-6-medium col-12-small">
             <article class="box style2">
               <a href="#" class="image featured"
-                ><img src="images/pic02.jpg" alt=""
+                ><img src="images/pic02.jpg" alt="Investment Records"
               /></a>
-              <h3><a href="#">Keywords</a></h3>
-              <p>Ornare nulla proin odio consequat.</p>
+              <h3>Investment Records</h3>
+              <p>
+                Foreign and local investments registered with regional
+                authorities.
+              </p>
             </article>
           </div>
           <div class="col-4 col-6-medium col-12-small">
             <article class="box style2">
               <a href="#" class="image featured"
-                ><img src="images/pic03.jpg" alt=""
+                ><img src="images/pic03.jpg" alt="Census Data"
               /></a>
-              <h3><a href="#">Tools</a></h3>
-              <p>Ornare nulla proin odio consequat.</p>
-            </article>
-          </div>
-          <div class="col-4 col-6-medium col-12-small">
-            <article class="box style2">
-              <a href="#" class="image featured"
-                ><img src="images/pic04.jpg" alt=""
-              /></a>
-              <h3><a href="#">Tempus dolore</a></h3>
-              <p>Ornare nulla proin odio consequat.</p>
-            </article>
-          </div>
-          <div class="col-4 col-6-medium col-12-small">
-            <article class="box style2">
-              <a href="#" class="image featured"
-                ><img src="images/pic05.jpg" alt=""
-              /></a>
-              <h3><a href="#">Feugiat aliquam</a></h3>
-              <p>Ornare nulla proin odio consequat.</p>
-            </article>
-          </div>
-          <div class="col-4 col-6-medium col-12-small">
-            <article class="box style2">
-              <a href="#" class="image featured"
-                ><img src="images/pic06.jpg" alt=""
-              /></a>
-              <h3><a href="#">Sed amet ornare</a></h3>
-              <p>Ornare nulla proin odio consequat.</p>
+              <h3>Census & Demographics</h3>
+              <p>
+                Population distribution and demographic shifts by
+                region.
+              </p>
             </article>
           </div>
         </div>
-        <footer>
-          <p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p>
-        </footer>
       </div>
     </article>
 
-    <!-- Methods -->
-    <article id="methods" class="wrapper style3">
+    <!-- Methodology -->
+    <article id="methodology" class="wrapper style3">
       <div class="container">
         <header>
-          <h2>Let's talk about our data science methodology.</h2>
-          <p>
-            Proin odio consequat sapien vestibulum consequat lorem dolore
-            feugiat.
-          </p>
+          <h2>Methodology</h2>
+          <p>Data science techniques used in this analysis</p>
         </header>
         <div class="row">
           <div class="col-6 col-6-medium col-12-small">
             <article class="box style2">
-              <a href="#" class="image featured"
-                ><img src="images/pic02.jpg" alt=""
-              /></a>
-              <h3><a href="#">Data Preprocessing</a></h3>
-              <p>Ornare nulla proin odio consequat.</p>
+              <h3>Data Preprocessing</h3>
+              <p>
+                Data cleaning, normalization, and geographic coordinate
+                mapping for regional entities.
+              </p>
             </article>
           </div>
           <div class="col-6 col-6-medium col-12-small">
             <article class="box style2">
-              <a href="#" class="image featured"
-                ><img src="images/pic01.jpg" alt=""
-              /></a>
-              <h3><a href="#">Machine Learning</a></h3>
-              <p>Ornare nulla proin odio consequat.</p>
+              <h3>Spatial Analysis</h3>
+              <p>
+                Center of gravity calculation using weighted centroids and
+                kernel density estimation for investment clustering.
+              </p>
             </article>
           </div>
         </div>
-        <footer>
-          <p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p>
-        </footer>
+        <div class="row">
+          <div class="col-6 col-6-medium col-12-small">
+            <article class="box style2">
+              <h3>Visualization</h3>
+              <p>
+                Geographic information systems (GIS) mapping and
+                interactive visualizations for result presentation.
+              </p>
+            </article>
+          </div>
+          <div class="col-6 col-6-medium col-12-small">
+            <article class="box style2">
+              <h3>Statistical Analysis</h3>
+              <p>
+                Trend analysis, correlation studies, and
+                significance testing for regional patterns.
+              </p>
+            </article>
+          </div>
+        </div>
       </div>
     </article>
 
     <!-- Results -->
-    <article id="results" class="wrapper style3">
+    <article id="results" class="wrapper style2">
       <div class="container">
         <header>
-          <h2>Here's what we found out.</h2>
-          <p>
-            Proin odio consequat sapien vestibulum consequat lorem dolore
-            feugiat.
-          </p>
+          <h2>Results</h2>
+          <p>Visualizing our findings</p>
         </header>
-        <div class="row">
-          <div class="col-6 col-6-medium col-12-small">
-            <article class="box style2">
-              <a href="#" class="image featured"
-                ><img src="images/pic02.jpg" alt=""
-              /></a>
-              <h3><a href="#">Results</a></h3>
-              <p>Ornare nulla proin odio consequat.</p>
-            </article>
+
+        <!-- Objective 1: Center of Gravity -->
+        <section class="result-section">
+          <div class="row">
+            <div class="col-12">
+              <header class="result-header">
+                <h3>Objective 1: Center of Gravity Migration</h3>
+              </header>
+            </div>
           </div>
-          <div class="col-6 col-6-medium col-12-small">
-            <article class="box style2">
-              <a href="#" class="image featured"
-                ><img src="images/pic01.jpg" alt=""
-              /></a>
-              <h3><a href="#">Results</a></h3>
-              <p>Ornare nulla proin odio consequat.</p>
-            </article>
+          <div class="row">
+            <div class="col-8 col-12-medium">
+              <div class="visualization-container">
+                <div class="map-placeholder">
+                  <img src="objective1_center_of_gravity.png" alt="Center of Gravity Migration Map" />
+                  <div class="map-overlay">
+                    <p>Center of Gravity Migration Pattern Across Philippine Regions</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4 col-12-medium">
+              <div class="result-description">
+                <h4>Key Findings</h4>
+                <ul class="findings-list">
+                  <li>
+                    <strong>Trend:</strong> [Insert migration trend
+                    finding]
+                  </li>
+                  <li>
+                    <strong>Direction:</strong> [Insert direction of
+                    migration]
+                  </li>
+                  <li>
+                    <strong>Rate:</strong> [Insert rate of change per
+                    year]
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
+
+        <!-- Objective 2: Investment Density -->
+        <section class="result-section">
+          <div class="row">
+            <div class="col-12">
+              <header class="result-header">
+                <h3>Objective 2: Investment Density by Region</h3>
+              </header>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-8 col-12-medium">
+              <div class="visualization-container">
+                <div class="map-placeholder">
+                  <img src="objective2_investment_density.png" alt="Investment Density Heat Map" />
+                  <div class="map-overlay">
+                    <p>Investment Density Heat Map by Region</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4 col-12-medium">
+              <div class="result-description">
+                <h4>Key Findings</h4>
+                <ul class="findings-list">
+                  <li>
+                    <strong>Hotspots:</strong> [Insert highest investment
+                    regions]
+                  </li>
+                  <li>
+                    <strong>Growth Areas:</strong> [Insert emerging
+                    investment areas]
+                  </li>
+                  <li>
+                    <strong>Disparity:</strong> [Insert regional gap
+                    statistics]
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <footer>
-          <p>Want to learn more? Take a look at our source codes.</p>
-          <a href="#contact" class="button large scrolly">Github Repo</a>
+          <p>Explore the data in detail</p>
+          <a href="#team" class="button large scrolly">View Interactive Dashboards</a>
         </footer>
       </div>
     </article>
@@ -254,119 +353,49 @@
     <article id="team" class="wrapper style4">
       <div class="container medium">
         <header>
-          <h2>We'd like to hear from you.</h2>
-          <p>You can add more information about the team members here.</p>
+          <h2>Our Team</h2>
+          <p>Data Science Group 1</p>
         </header>
-        <div class="row">
-          <div class="col-12">
-            <form method="post" action="#">
-              <div class="row">
-                <div class="col-6 col-12-small">
-                  <input type="text" name="name" id="name" placeholder="Name" />
-                </div>
-                <div class="col-6 col-12-small">
-                  <input
-                    type="text"
-                    name="email"
-                    id="email"
-                    placeholder="Email"
-                  />
-                </div>
-                <div class="col-12">
-                  <input
-                    type="text"
-                    name="subject"
-                    id="subject"
-                    placeholder="Subject"
-                  />
-                </div>
-                <div class="col-12">
-                  <textarea
-                    name="message"
-                    id="message"
-                    placeholder="Message"
-                  ></textarea>
-                </div>
-                <div class="col-12">
-                  <ul class="actions">
-                    <li><input type="submit" value="Send Message" /></li>
-                    <li>
-                      <input type="reset" value="Clear Form" class="alt" />
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </form>
+        <div class="row aln-center">
+          <div class="col-4 col-6-medium col-12-small">
+            <section class="box style1 team-box">
+              <span class="icon solid featured fa-user"></span>
+              <h3>Estabillo</h3>
+              <p>Data Analysis & Processing</p>
+            </section>
           </div>
-          <div class="col-12">
-            <hr />
-            <h3>Find me on ...</h3>
-            <ul class="social">
-              <li>
-                <a href="#" class="icon brands fa-twitter"
-                  ><span class="label">Twitter</span></a
-                >
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-facebook-f"
-                  ><span class="label">Facebook</span></a
-                >
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-dribbble"
-                  ><span class="label">Dribbble</span></a
-                >
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-linkedin-in"
-                  ><span class="label">LinkedIn</span></a
-                >
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-tumblr"
-                  ><span class="label">Tumblr</span></a
-                >
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-google-plus"
-                  ><span class="label">Google+</span></a
-                >
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-github"
-                  ><span class="label">Github</span></a
-                >
-              </li>
-              <!--
-								<li><a href="#" class="icon solid fa-rss"><span>RSS</span></a></li>
-								<li><a href="#" class="icon brands fa-instagram"><span>Instagram</span></a></li>
-								<li><a href="#" class="icon brands fa-foursquare"><span>Foursquare</span></a></li>
-								<li><a href="#" class="icon brands fa-skype"><span>Skype</span></a></li>
-								<li><a href="#" class="icon brands fa-soundcloud"><span>Soundcloud</span></a></li>
-								<li><a href="#" class="icon brands fa-youtube"><span>YouTube</span></a></li>
-								<li><a href="#" class="icon brands fa-blogger"><span>Blogger</span></a></li>
-								<li><a href="#" class="icon brands fa-flickr"><span>Flickr</span></a></li>
-								<li><a href="#" class="icon brands fa-vimeo"><span>Vimeo</span></a></li>
-								-->
-            </ul>
-            <hr />
+          <div class="col-4 col-6-medium col-12-small">
+            <section class="box style1 team-box">
+              <span class="icon solid featured fa-user"></span>
+              <h3>Mercado</h3>
+              <p>Visualization & Mapping</p>
+            </section>
+          </div>
+          <div class="col-4 col-6-medium col-12-small">
+            <section class="box style1 team-box">
+              <span class="icon solid featured fa-user"></span>
+              <h3>Pulumbarit</h3>
+              <p>Statistical Modeling</p>
+            </section>
           </div>
         </div>
         <footer>
           <ul id="copyright">
-            <li>&copy; Untitled. All rights reserved.</li>
-            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            <li>&copy; 2024 Group 1 Data Science Project</li>
+            <li>
+              Course: CS 132 - Data Science Project
+            </li>
           </ul>
         </footer>
       </div>
     </article>
 
     <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.scrolly.min.js"></script>
+    <script src="js/browser.min.js"></script>
+    <script src="js/breakpoints.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

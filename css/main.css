@@ -110,12 +110,12 @@ input, select, textarea {
 		-webkit-transition: color .2s ease-in-out;
 		-ms-transition: color .2s ease-in-out;
 		transition: color .2s ease-in-out;
-		color: #43B3E0;
+		color: #2A7B9E;
 		text-decoration: underline;
 	}
 
 		a:hover {
-			color: #43bff0 !important;
+			color: #3daac7 !important;
 		}
 
 		a img {
@@ -1686,11 +1686,29 @@ input, select, textarea {
 		text-shadow: -1px -1px 0.5px rgba(0, 0, 0, 0.5);
 		overflow: hidden;
 		box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.5), inset 0px 2px 1px 0px rgba(255, 255, 255, 0.75);
-		background-color: #43B3E0;
+background-color: #2A7B9E;
 		padding: 1em 2.35em 1em 2.35em;
 		font-size: 1.1em;
 		max-width: 24em;
 	}
+
+		input[type="button"]:hover,
+		input[type="submit"]:hover,
+		input[type="reset"]:hover,
+		button:hover,
+		.button:hover {
+			background-color: #3daac7;
+			color: #fff !important;
+		}
+
+		input[type="button"]:active,
+		input[type="submit"]:active,
+		input[type="reset"]:active,
+		button:active,
+		.button:active {
+			background-color: #256d87;
+			top: 1px;
+		}
 
 		input[type="button"]:hover,
 		input[type="submit"]:hover,
@@ -2438,8 +2456,187 @@ input, select, textarea {
 					border-left: 0;
 				}
 
-					#copyright li:first-child {
-						margin-top: 0;
-					}
+#copyright li:first-child {
+					margin-top: 0;
+				}
 
+}
+
+/* ============================================
+   DATA SCIENCE PORTFOLIO ADDITIONS
+   ============================================ */
+
+/* Objectives List */
+.objectives-list {
+	list-style: none;
+	padding-left: 0;
+	margin: 1.5em 0;
+}
+
+.objectives-list li {
+	padding: 0.75em 0;
+	border-bottom: 1px solid #eee;
+	font-size: 1.1em;
+	line-height: 1.6em;
+}
+
+.objectives-list li strong {
+	color: #2A7B9E;
+}
+
+/* Feature List */
+.feature-list {
+	list-style: none;
+	padding-left: 0;
+	margin-top: 1em;
+}
+
+.feature-list li {
+	padding: 0.5em 0;
+	position: relative;
+	padding-left: 1.5em;
+}
+
+.feature-list li:before {
+	content: "\f00c";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	position: absolute;
+	left: 0;
+	color: #2A7B9E;
+}
+
+/* Result Section */
+.result-section {
+	margin: 4em 0;
+	padding: 2em 0;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+
+.result-section:first-child {
+	margin-top: 0;
+	padding-top: 0;
+	border-top: none;
+}
+
+.result-header {
+	text-align: left;
+	margin-bottom: 1.5em;
+	padding-bottom: 0.5em;
+	border-bottom: 2px solid #2A7B9E;
+}
+
+.result-header h3 {
+	margin: 0;
+	color: #2A7B9E;
+	font-size: 1.5em;
+}
+
+/* Visualization Container */
+.visualization-container {
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 1em;
+	box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.map-placeholder {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	border-radius: 4px;
+}
+
+.map-placeholder img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.map-overlay {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(42, 123, 158, 0.9);
+	color: #fff;
+	padding: 1em;
+	text-align: center;
+	font-size: 0.9em;
+}
+
+/* Result Description */
+.result-description {
+	padding: 1em;
+}
+
+.result-description h4 {
+	margin: 0 0 1em 0;
+	color: #3e3e3e;
+	font-size: 1.2em;
+}
+
+.findings-list {
+	list-style: none;
+	padding-left: 0;
+}
+
+.findings-list li {
+	padding: 0.75em 0;
+	border-bottom: 1px solid #eee;
+}
+
+.findings-list li:last-child {
+	border-bottom: none;
+}
+
+.findings-list strong {
+	color: #2A7B9E;
+}
+
+/* Team Box */
+.team-box {
+	min-height: 180px;
+}
+
+.team-box .icon {
+	margin-bottom: 0.5em;
+}
+
+/* Data Science Color Accents */
+.wrapper.style1 .highlight {
+	color: #2A7B9E;
+}
+
+.wrapper.style2 .highlight {
+	color: #2A7B9E;
+}
+
+.wrapper.style3 .highlight {
+	color: #2A7B9E;
+}
+
+/* Responsive Adjustments for Results */
+@media screen and (max-width: 980px) {
+	.result-section {
+		margin: 2em 0;
+		padding: 1.5em 0;
 	}
+	
+	.result-header h3 {
+		font-size: 1.25em;
+	}
+}
+
+@media screen and (max-width: 736px) {
+	.result-section {
+		margin: 1.5em 0;
+		padding: 1em 0;
+	}
+	
+	.visualization-container {
+		margin-bottom: 1.5em;
+	}
+}
