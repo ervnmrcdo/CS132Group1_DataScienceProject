@@ -31,4 +31,27 @@
 			offset: function() { return $nav.height(); }
 		});
 
+	// Image Modal / Lightbox.
+		var $modal = $('#image-modal'),
+			$modalImg = $('#modal-img'),
+			$modalCaption = $('#modal-caption');
+
+		$('.map-placeholder img, .image.featured img').on('click', function() {
+			$modalImg.attr('src', $(this).attr('src'));
+			$modalCaption.text($(this).attr('alt'));
+			$modal.addClass('active');
+		});
+
+		$('.modal-close, .image-modal').on('click', function(e) {
+			if (e.target !== $modalImg[0]) {
+				$modal.removeClass('active');
+			}
+		});
+
+		$(document).on('keydown', function(e) {
+			if (e.key === 'Escape') {
+				$modal.removeClass('active');
+			}
+		});
+
 })(jQuery);

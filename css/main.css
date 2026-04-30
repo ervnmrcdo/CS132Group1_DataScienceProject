@@ -2640,3 +2640,78 @@ background-color: #2A7B9E;
 		margin-bottom: 1.5em;
 	}
 }
+
+/* Image Modal / Lightbox */
+
+.image-modal {
+	display: none;
+	position: fixed;
+	z-index: 10000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.9);
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	cursor: pointer;
+}
+
+.image-modal.active {
+	display: flex;
+}
+
+.modal-content {
+	max-width: 90vw;
+	max-height: 90vh;
+	object-fit: contain;
+	border-radius: 4px;
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+#modal-caption {
+	color: #fff;
+	padding: 1em 0 0.5em;
+	font-size: 1em;
+	text-align: center;
+	max-width: 80vw;
+}
+
+.modal-close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	color: #fff;
+	font-size: 40px;
+	font-weight: bold;
+	cursor: pointer;
+	z-index: 10001;
+	transition: color 0.2s;
+}
+
+.modal-close:hover {
+	color: #2A7B9E;
+}
+
+/* Clickable images */
+
+.map-placeholder img {
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.map-placeholder img:hover {
+	transform: scale(1.02);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.image.featured img {
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.image.featured img:hover {
+	transform: scale(1.02);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
