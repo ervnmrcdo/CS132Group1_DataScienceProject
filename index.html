@@ -1,408 +1,1045 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Philippine Regional Analysis - Data Science Project</title>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
+      name="description"
+      content="DPWH Infrastructure EDA Dashboard - Spatial and Temporal Analysis of Philippine Infrastructure Projects (2019–2025)"
     />
-    <link rel="stylesheet" href="css/main.css" />
+    <title>DPWH Infrastructure EDA Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   </head>
-  <body class="is-preload">
-    <!-- Nav -->
-    <nav id="nav">
-      <ul class="container">
-        <li><a href="#top">Home</a></li>
-        <li><a href="#overview">Overview</a></li>
-        <li><a href="#objectives">Objectives</a></li>
-        <li><a href="#data">Data</a></li>
-        <li><a href="#methodology">Methodology</a></li>
-        <li><a href="#results">Results</a></li>
-        <li><a href="#team">Team</a></li>
-      </ul>
+  <body>
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <div class="nav-links" id="navLinks">
+          <a href="#overview" class="nav-link active">
+            <svg
+              class="icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+              />
+            </svg>
+            <span>Overview</span>
+          </a>
+          <a href="#research" class="nav-link">
+            <svg
+              class="icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+            <span>Research Questions and Hypotheses</span>
+          </a>
+          <a href="#dataset" class="nav-link">
+            <svg
+              class="icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <ellipse cx="12" cy="5" rx="9" ry="3" />
+              <path
+                d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"
+              />
+            </svg>
+            <span>Dataset</span>
+          </a>
+          <a href="#methods" class="nav-link">
+            <svg
+              class="icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zm7.5-1.5-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+              />
+            </svg>
+            <span>Methods</span>
+          </a>
+          <a href="#eda" class="nav-link">
+            <svg
+              class="icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="12" y1="20" x2="12" y2="10" />
+              <line x1="18" y1="20" x2="18" y2="4" />
+              <line x1="6" y1="20" x2="6" y2="16" />
+            </svg>
+            <span>EDA</span>
+          </a>
+          <a href="#conclusion" class="nav-link">
+            <svg
+              class="icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            <span>Conclusion</span>
+          </a>
+          <a href="#team" class="nav-link">
+            <svg
+              class="icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            <span>Team</span>
+          </a>
+        </div>
+        <button class="mobile-btn" id="mobileBtn">
+          <svg
+            id="menuIcon"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+          <svg
+            id="closeIcon"
+            class="hidden"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="mobile-nav hidden" id="mobileNav">
+        <a href="#overview" class="mobile-link active">
+          <svg
+            class="icon"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+            /></svg
+          >Overview
+        </a>
+        <a href="#research" class="mobile-link">
+          <svg
+            class="icon"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" /></svg
+          >Research Questions
+        </a>
+        <a href="#dataset" class="mobile-link">
+          <svg
+            class="icon"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <ellipse cx="12" cy="5" rx="9" ry="3" /></svg
+          >Dataset
+        </a>
+        <a href="#methods" class="mobile-link">
+          <svg
+            class="icon"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2" /></svg
+          >Methods
+        </a>
+        <a href="#eda" class="mobile-link">
+          <svg
+            class="icon"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="12" y1="20" x2="12" y2="10" /></svg
+          >EDA
+        </a>
+        <a href="#conclusion" class="mobile-link">
+          <svg
+            class="icon"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /></svg
+          >Conclusion
+        </a>
+        <a href="#team" class="mobile-link">
+          <svg
+            class="icon"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="9" cy="7" r="4" /></svg
+          >Team
+        </a>
+      </div>
     </nav>
 
-    <!-- Home / Hero -->
-    <article id="top" class="wrapper style1">
-      <div class="container">
-        <div class="row">
-          <div class="col-4 col-5-large col-12-medium">
-            <span class="image fit"
-              ><img src="images/pic00.jpg" alt="Philippine Map Visualization"
-            /></span>
-          </div>
-          <div class="col-8 col-7-large col-12-medium">
-            <header>
-              <h1><strong>Philippine Regional Analysis</strong></h1>
-              <h2>A Data Science Approach</h2>
-            </header>
-            <p>
-              This project examines <strong>two key objectives</strong> to understand
-              regional economic dynamics in the Philippines:
-            </p>
-            <ul class="objectives-list">
-              <li>
-                <strong>Objective 1:</strong> Geographic Center of Gravity Migration
-                - Tracking how economic centers shift across regions over time
-              </li>
-              <li>
-                <strong>Objective 2:</strong> Investment Density by Region -
-                Analyzing investment concentration and distribution patterns
-              </li>
-            </ul>
-            <p>
-              <em
-                >Using data-driven insights to reveal spatial and temporal
-                trends in Philippine regional development.</em
-              >
-            </p>
-          </div>
-        </div>
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">DPWH Infrastructure Projects Dashboard</h1>
+        <h2 class="hero-subtitle">
+          A Spatial and Temporal Analysis of Philippine Infrastructure
+          Investment, Allocation, and Performance (2019–2025)
+        </h2>
       </div>
-    </article>
+    </section>
 
-    <!-- Overview -->
-    <article id="overview" class="wrapper style2">
-      <div class="container">
-        <header>
-          <h2>Project Overview</h2>
-          <p>Understanding regional dynamics through spatial analysis</p>
-        </header>
-        <div class="row aln-center">
-          <div class="col-4 col-6-medium col-12-small">
-            <section class="box style1">
-              <span class="icon solid featured fa-globe-asia"></span>
-              <h3>Motivation</h3>
-              <p>
-                Regional economic disparities in the Philippines have significant
-                implications for policy-making and development planning.
-              </p>
-            </section>
-          </div>
-          <div class="col-4 col-6-medium col-12-small">
-            <section class="box style1">
-              <span class="icon solid featured fa-map-marker-alt"></span>
-              <h3>Problem</h3>
-              <p>
-                Understanding how economic activity migrates and where investments
-                concentrate is crucial for targeted development strategies.
-              </p>
-            </section>
-          </div>
-          <div class="col-4 col-6-medium col-12-small">
-            <section class="box style1">
-              <span class="icon solid featured fa-chart-line"></span>
-              <h3>Solution</h3>
-              <p>
-                Apply spatial analysis techniques to identify center of gravity
-                migration patterns and investment density clusters.
-              </p>
-            </section>
-          </div>
+    <main class="container">
+      <!-- ===================== OVERVIEW ===================== -->
+      <section id="overview" class="section">
+        <div class="section-header">
+          <svg
+            class="section-icon"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+            />
+          </svg>
+          <h2>Overview</h2>
         </div>
-      </div>
-    </article>
-
-    <!-- Objectives -->
-    <article id="objectives" class="wrapper style3">
-      <div class="container">
-        <header>
-          <h2>Research Objectives</h2>
-          <p>Two complementary analyses for regional economic insights</p>
-        </header>
-        <div class="row">
-          <div class="col-6 col-6-medium col-12-small">
-            <article class="box style2">
-              <h3>Objective 1</h3>
-              <h2>Geographic Center of Gravity Migration</h2>
-              <p>
-                This objective focuses on tracking how the geographic center
-                of economic activity shifts across Philippine regions over
-                time. By calculating the weighted centroid of economic
-                metrics, we can visualize and quantify the direction
-                and magnitude of regional economic migration patterns.
-              </p>
-              <ul class="feature-list">
-                <li>Temporal analysis of economic center movement</li>
-                <li>Regional migration patterns</li>
-                <li>Growth trajectory visualization</li>
-              </ul>
-            </article>
-          </div>
-          <div class="col-6 col-6-medium col-12-small">
-            <article class="box style2">
-              <h3>Objective 2</h3>
-              <h2>Investment Density by Region</h2>
-              <p>
-                This objective analyzes how investment capital is
-                distributed across different Philippine regions. By mapping
-                investment density, we identify concentration hotspots and
-                underserved areas, providing insights for balanced
-                regional development planning.
-              </p>
-              <ul class="feature-list">
-                <li>Investment heat mapping by region</li>
-                <li>Density concentration analysis</li>
-                <li>Regional investment disparities</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Data -->
-    <article id="data" class="wrapper style2">
-      <div class="container">
-        <header>
-          <h2>Data Sources</h2>
-          <p>Reliable datasets for Philippine regional analysis</p>
-        </header>
-        <div class="row">
-          <div class="col-4 col-6-medium col-12-small">
-            <article class="box style2">
-              <a href="#" class="image featured"
-                ><img src="images/pic01.jpg" alt="Regional Data"
-              /></a>
-              <h3>Regional Economic Data</h3>
-              <p>
-                GDP, employment rates, and economic indicators by
-                province and region.
-              </p>
-            </article>
-          </div>
-          <div class="col-4 col-6-medium col-12-small">
-            <article class="box style2">
-              <a href="#" class="image featured"
-                ><img src="images/pic02.jpg" alt="Investment Records"
-              /></a>
-              <h3>Investment Records</h3>
-              <p>
-                Foreign and local investments registered with regional
-                authorities.
-              </p>
-            </article>
-          </div>
-          <div class="col-4 col-6-medium col-12-small">
-            <article class="box style2">
-              <a href="#" class="image featured"
-                ><img src="images/pic03.jpg" alt="Census Data"
-              /></a>
-              <h3>Census & Demographics</h3>
-              <p>
-                Population distribution and demographic shifts by
-                region.
-              </p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Methodology -->
-    <article id="methodology" class="wrapper style3">
-      <div class="container">
-        <header>
-          <h2>Methodology</h2>
-          <p>Data science techniques used in this analysis</p>
-        </header>
-        <div class="row">
-          <div class="col-6 col-6-medium col-12-small">
-            <article class="box style2">
-              <h3>Data Preprocessing</h3>
-              <p>
-                Data cleaning, normalization, and geographic coordinate
-                mapping for regional entities.
-              </p>
-            </article>
-          </div>
-          <div class="col-6 col-6-medium col-12-small">
-            <article class="box style2">
-              <h3>Spatial Analysis</h3>
-              <p>
-                Center of gravity calculation using weighted centroids and
-                kernel density estimation for investment clustering.
-              </p>
-            </article>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6 col-6-medium col-12-small">
-            <article class="box style2">
-              <h3>Visualization</h3>
-              <p>
-                Geographic information systems (GIS) mapping and
-                interactive visualizations for result presentation.
-              </p>
-            </article>
-          </div>
-          <div class="col-6 col-6-medium col-12-small">
-            <article class="box style2">
-              <h3>Statistical Analysis</h3>
-              <p>
-                Trend analysis, correlation studies, and
-                significance testing for regional patterns.
-              </p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Results -->
-    <article id="results" class="wrapper style2">
-      <div class="container">
-        <header>
-          <h2>Results</h2>
-          <p>Visualizing our findings</p>
-        </header>
-
-        <!-- Objective 1: Center of Gravity -->
-        <section class="result-section">
-          <div class="row">
-            <div class="col-12">
-              <header class="result-header">
-                <h3>Objective 1: Center of Gravity Migration</h3>
-              </header>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-8 col-12-medium">
-              <div class="visualization-container">
-                <div class="map-placeholder">
-                  <img src="objective1_center_of_gravity.png" alt="Center of Gravity Migration Map" />
-                  <div class="map-overlay">
-                    <p>Center of Gravity Migration Pattern Across Philippine Regions</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-4 col-12-medium">
-              <div class="result-description">
-                <h4>Key Findings</h4>
-                <ul class="findings-list">
-                  <li>
-                    <strong>Trend:</strong> [Insert migration trend
-                    finding]
-                  </li>
-                  <li>
-                    <strong>Direction:</strong> [Insert direction of
-                    migration]
-                  </li>
-                  <li>
-                    <strong>Rate:</strong> [Insert rate of change per
-                    year]
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Objective 2: Investment Density -->
-        <section class="result-section">
-          <div class="row">
-            <div class="col-12">
-              <header class="result-header">
-                <h3>Objective 2: Investment Density by Region</h3>
-              </header>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-8 col-12-medium">
-              <div class="visualization-container">
-                <div class="map-placeholder">
-                  <img src="objective2_investment_density.png" alt="Investment Density Heat Map" />
-                  <div class="map-overlay">
-                    <p>Investment Density Heat Map by Region</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-4 col-12-medium">
-              <div class="result-description">
-                <h4>Key Findings</h4>
-                <ul class="findings-list">
-                  <li>
-                    <strong>Hotspots:</strong> [Insert highest investment
-                    regions]
-                  </li>
-                  <li>
-                    <strong>Growth Areas:</strong> [Insert emerging
-                    investment areas]
-                  </li>
-                  <li>
-                    <strong>Disparity:</strong> [Insert regional gap
-                    statistics]
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <footer>
-          <p>Explore the data in detail</p>
-          <a href="#team" class="button large scrolly">View Interactive Dashboards</a>
-        </footer>
-      </div>
-    </article>
-
-    <!-- Team -->
-    <article id="team" class="wrapper style4">
-      <div class="container medium">
-        <header>
-          <h2>Our Team</h2>
-          <p>Data Science Group 1</p>
-        </header>
-        <div class="row aln-center">
-          <div class="col-4 col-6-medium col-12-small">
-            <section class="box style1 team-box">
-              <span class="icon solid featured fa-user"></span>
-              <h3>Estabillo</h3>
-              <p>Data Analysis & Processing</p>
-            </section>
-          </div>
-          <div class="col-4 col-6-medium col-12-small">
-            <section class="box style1 team-box">
-              <span class="icon solid featured fa-user"></span>
-              <h3>Mercado</h3>
-              <p>Visualization & Mapping</p>
-            </section>
-          </div>
-          <div class="col-4 col-6-medium col-12-small">
-            <section class="box style1 team-box">
-              <span class="icon solid featured fa-user"></span>
-              <h3>Pulumbarit</h3>
-              <p>Statistical Modeling</p>
-            </section>
-          </div>
-        </div>
-        <footer>
-          <ul id="copyright">
-            <li>&copy; 2024 Group 1 Data Science Project</li>
+        <div class="card">
+          <p>
+            This project performs an
+            <span class="highlight">Exploratory Data Analysis (EDA)</span> on
+            the DPWH Transparency Portal dataset, covering
+            <span class="highlight">248,421 infrastructure projects</span>
+            across the Philippines from 2019 to 2025. Using spatial and temporal
+            techniques, we trace how public infrastructure investment has
+            shifted geographically, which regions are receiving the most
+            concentrated funding, and whether budget allocations match actual
+            awarded amounts.
+          </p>
+          <p>
+            The analysis is driven by
+            <span class="highlight">6 research objectives</span> and supported
+            by two formal hypothesis tests — providing both descriptive insights
+            and statistically grounded conclusions for stakeholders and
+            policymakers.
+          </p>
+          <h3>Research Objectives</h3>
+          <ul class="questions" style="margin-top: 0.75rem">
             <li>
-              Course: CS 132 - Data Science Project
+              <span class="num">1.</span
+              ><span
+                >Geographic Center of Gravity Migration — where is
+                infrastructure spending gravitating over time?</span
+              >
+            </li>
+            <li>
+              <span class="num">2.</span
+              ><span
+                >Investment Density — which regions show the highest budget per
+                km² for specific project categories?</span
+              >
             </li>
           </ul>
-        </footer>
-      </div>
-    </article>
+        </div>
+      </section>
 
-    <!-- Image Modal -->
-    <div id="image-modal" class="image-modal">
-      <span class="modal-close">&times;</span>
-      <img class="modal-content" id="modal-img" />
-      <div id="modal-caption"></div>
-    </div>
+      <!-- ===================== RESEARCH QUESTIONS ===================== -->
+      <section id="research" class="section">
+        <div class="section-header">
+          <svg
+            class="section-icon"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+          <h2>Research Questions and Hypotheses</h2>
+        </div>
+        <div class="card">
+          <h3>Research Questions</h3>
+          <ul class="questions">
+            <li>
+              <span class="num">1.</span>
+              <span
+                >How has the geographic "center of gravity" for total award
+                amounts migrated across the Philippines between 2019 and 2025?
+                Is the money staying in the same provinces or spreading
+                out?</span
+              >
+            </li>
+            <li>
+              <span class="num">2.</span>
+              <span
+                >Which regions show the highest investment density (total budget
+                per km²) for specific infrastructure categories, and does this
+                density spike in certain years?</span
+              >
+            </li>
+          </ul>
 
-    <!-- Scripts -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.scrolly.min.js"></script>
-    <script src="js/browser.min.js"></script>
-    <script src="js/breakpoints.min.js"></script>
-    <script src="js/util.js"></script>
-    <script src="js/main.js"></script>
+          <h3>Research Hypotheses</h3>
+          <ul class="hypotheses">
+            <li>
+              <span class="num">H₁</span>
+              <span>
+                <strong style="color: #fff">Migration from NCR:</strong> The
+                budget-weighted center of gravity has been migrating away from
+                the National Capital Region (NCR) between 2019 and 2025,
+                reflecting a policy shift toward regional infrastructure
+                development. <br /><em style="color: #94a3b8"
+                  >Test: Linear regression of centroid distance from NCR over
+                  years; reject H₀ if slope is significantly positive (p &lt;
+                  0.05).</em
+                >
+              </span>
+            </li>
+            <li>
+              <span class="num">H₂</span>
+              <span>
+                <strong style="color: #fff">Urban Density Premium:</strong>
+                Urbanized regions (NCR, Region III, Region IV-A) have
+                significantly higher investment density (budget per km²)
+                compared to non-urbanized regions. <br /><em
+                  style="color: #94a3b8"
+                  >Test: One-tailed independent t-test and Mann-Whitney U test;
+                  reject H₀ if urban mean density is significantly greater (p
+                  &lt; 0.05).</em
+                >
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== DATASET ===================== -->
+      <section id="dataset" class="section">
+        <div class="section-header">
+          <svg
+            class="section-icon"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <ellipse cx="12" cy="5" rx="9" ry="3" />
+            <path
+              d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"
+            />
+          </svg>
+          <h2>Dataset</h2>
+        </div>
+        <div class="card">
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-label">Total Records</div>
+              <div class="stat-value">248,421</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Features (Raw)</div>
+              <div class="stat-value">52</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Analysis Period</div>
+              <div class="stat-value">2019–2025</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Regions Covered</div>
+              <div class="stat-value">18</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Provinces Covered</div>
+              <div class="stat-value">220</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Data Source</div>
+              <div class="stat-value">
+                <a
+                  href="https://huggingface.co"
+                  target="_blank"
+                  style="color: #22d3ee"
+                  >Hugging Face</a
+                >
+              </div>
+            </div>
+          </div>
+          <p>
+            The dataset is sourced from the
+            <span class="highlight">DPWH Transparency Portal</span> and covers
+            infrastructure projects across all 18 administrative regions and 220
+            provinces of the Philippines. Each record contains up to 52
+            attributes including project budget, award amount, geographic
+            coordinates, infrastructure type, and key dates (advertisement, bid
+            submission, contract effectivity, and completion).
+          </p>
+          <p>
+            The raw dataset spans 2016–2025, but years prior to 2019 were found
+            to have less than 80% data completeness in core columns (budget,
+            region, coordinates) and were
+            <span class="highlight">excluded from analysis</span>
+            to ensure statistical validity in year-over-year comparisons.
+          </p>
+
+          <h3 class="subtitle">Key Columns Used</h3>
+          <ul class="pre-processing">
+            <li>
+              <strong style="color: #fff">budget</strong> — Total project budget
+              (PHP)
+            </li>
+            <li>
+              <strong style="color: #fff">abc</strong> — Approved Budget for
+              Contract
+            </li>
+            <li>
+              <strong style="color: #fff">awardAmount</strong> — Actual awarded
+              contract amount
+            </li>
+            <li>
+              <strong style="color: #fff">region / province</strong> —
+              Geographic identifiers
+            </li>
+            <li>
+              <strong style="color: #fff">latitude / longitude</strong> —
+              Project coordinates for spatial analysis
+            </li>
+            <li>
+              <strong style="color: #fff">infraType</strong> — Infrastructure
+              category (road, bridge, building, etc.)
+            </li>
+            <li>
+              <strong style="color: #fff"
+                >infraYear, startDate, completionDate</strong
+              >
+              — Temporal attributes
+            </li>
+            <li>
+              <strong style="color: #fff">advertisementDate</strong> — Used to
+              extract fiscal quarter (Q1–Q4)
+            </li>
+          </ul>
+
+          <h3 class="subtitle">Sample Data</h3>
+          <div class="embed">
+            <iframe
+              src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQexample/pubhtml?widget=true&headers=false"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== METHODS ===================== -->
+      <section id="methods" class="section">
+        <div class="section-header">
+          <svg
+            class="section-icon"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zm7.5-1.5-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+            />
+          </svg>
+          <h2>Methods</h2>
+        </div>
+        <div class="card">
+          <div class="method">
+            <h3>Data Collection</h3>
+            <p>
+              The dataset was obtained from
+              <span class="highlight">Hugging Face</span> as a Parquet file
+              (<code style="color: #22d3ee"
+                >dpwh_transparency_data_all_details.parquet</code
+              >), sourced from the DPWH Transparency Portal. Parquet format was
+              used for efficient columnar storage and fast loading with pandas.
+            </p>
+          </div>
+
+          <div class="method">
+            <h3>Data Preprocessing</h3>
+            <p>
+              A multi-step cleaning pipeline was applied to ensure data quality:
+            </p>
+            <ul class="pre-processing" style="margin-top: 0.5rem">
+              <li>
+                <strong style="color: #fff">Drop non-viable columns</strong> — 7
+                columns with 100% null values or constant values (e.g.,
+                <code>nysReason</code>, <code>isVerifiedByDpwh</code>,
+                livestream fields) were removed.
+              </li>
+              <li>
+                <strong style="color: #fff">Drop duplicate columns</strong> — 4
+                columns that were exact duplicates from a data merge
+                (<code>infraType_1</code>, <code>status_1</code>,
+                <code>latitude_1</code>, <code>longitude_1</code>) were removed.
+              </li>
+              <li>
+                <strong style="color: #fff">Drop low-viability columns</strong>
+                — Columns with high missingness (&gt;28%) such as
+                <code>dateOfAward</code> (28% missing) and
+                <code>latestImageDate</code> (45% missing) were excluded.
+              </li>
+              <li>
+                <strong style="color: #fff">Filter to valid years</strong> —
+                Only years with &gt;80% data completeness in core columns were
+                retained, resulting in coverage from 2019 to 2025.
+              </li>
+              <li>
+                <strong style="color: #fff">Convert date columns</strong> — Six
+                date columns were converted from string to
+                <code>datetime64</code> for temporal analysis.
+              </li>
+              <li>
+                <strong style="color: #fff">Clean numeric columns</strong> —
+                Currency strings with ₱ symbols and commas in
+                <code>abc</code> and <code>awardAmount</code> were parsed to
+                <code>float64</code>.
+              </li>
+              <li>
+                <strong style="color: #fff"
+                  >Drop rows with missing coordinates</strong
+                >
+                — 13.56% of rows with missing latitude/longitude were dropped
+                (below the 20% imputation threshold), as they cannot contribute
+                to spatial analysis.
+              </li>
+            </ul>
+          </div>
+
+          <div class="method">
+            <h3>Feature Engineering</h3>
+            <p>
+              Five derived features were created to support the research
+              objectives:
+            </p>
+            <ul class="pre-processing" style="margin-top: 0.5rem">
+              <li>
+                <strong style="color: #fff">region_area_km²</strong> — Mapped
+                from official Philippine regional area data; used as the
+                denominator for investment density.
+              </li>
+              <li>
+                <strong style="color: #fff">budget_density</strong> — Budget ÷
+                region area (PHP per km²); directly measures investment
+                concentration.
+              </li>
+              <li>
+                <strong style="color: #fff">budget_gap / budget_gap_pct</strong>
+                — Difference and percentage difference between ABC and award
+                amount; quantifies procurement efficiency.
+              </li>
+              <li>
+                <strong style="color: #fff">project_duration_days</strong> —
+                Completion date minus start date; reflects project execution
+                efficiency.
+              </li>
+              <li>
+                <strong style="color: #fff">fiscal_quarter</strong> — Quarter
+                extracted from <code>advertisementDate</code>; used for temporal
+                bias analysis.
+              </li>
+            </ul>
+          </div>
+
+          <div class="method">
+            <h3>Analysis Techniques</h3>
+            <p>
+              Spatial analysis uses
+              <span class="highlight">budget-weighted centroids</span> (lat/lon)
+              computed per year to track geographic migration. Investment
+              density is measured via region-normalized budget aggregations.
+              Hypothesis tests use
+              <span class="highlight">linear regression</span> (SciPy
+              <code>linregress</code>) for migration trend significance, and a
+              <span class="highlight">one-tailed independent t-test</span> with
+              <span class="highlight">Mann-Whitney U</span> as a non-parametric
+              alternative for density comparisons.
+            </p>
+          </div>
+
+          <div class="method">
+            <h3>Visualization Tools</h3>
+            <p>
+              Visualizations were produced with
+              <span class="highlight">Matplotlib</span> and
+              <span class="highlight">Seaborn</span>, including centroid
+              trajectory maps, latitude trend lines, and heatmaps of investment
+              density by region and infrastructure type. Interactive charts on
+              this dashboard are rendered using
+              <span class="highlight">Chart.js</span>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== EDA ===================== -->
+      <section id="eda" class="section">
+        <div class="section-header">
+          <svg
+            class="section-icon"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="12" y1="20" x2="12" y2="10" />
+            <line x1="18" y1="20" x2="18" y2="4" />
+            <line x1="6" y1="20" x2="6" y2="16" />
+          </svg>
+          <h2>Exploratory Data Analysis</h2>
+        </div>
+        <div class="card">
+          <p>
+            Our exploratory analysis surfaced several
+            <span class="highlight">key findings</span> across geography, budget
+            concentration, and temporal patterns:
+          </p>
+
+          <div class="insights">
+            <div class="insight">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <span
+                >The budget-weighted center of gravity shows a
+                <strong style="color: #fff">net northward drift</strong> from
+                2019 to 2025, consistent with increased allocations to Luzon
+                regions — particularly Region III (Central Luzon), which topped
+                national budget rankings in 2024 at ₱144.6B.</span
+              >
+            </div>
+            <div class="insight">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <span
+                >The
+                <strong style="color: #fff">National Capital Region</strong>
+                consistently ranks highest in investment density due to its
+                small land area (636 km²), despite not always receiving the
+                highest absolute budget, confirming a structural urban
+                concentration effect.</span
+              >
+            </div>
+            <div class="insight">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <span
+                >Hypothesis 2 was
+                <strong style="color: #fff">confirmed</strong>: urban regions
+                (NCR, Region III, Region IV-A) have statistically significantly
+                higher investment density than non-urban regions, with urban
+                mean density exceeding non-urban by more than
+                <strong style="color: #fff">3×</strong> on average.</span
+              >
+            </div>
+            <div class="insight">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <span
+                >Columns with
+                <strong style="color: #fff">zero analytical value</strong> (100%
+                null or constant) and duplicate columns from data merges were
+                identified and removed, reducing the feature set from 52 to a
+                cleaner working subset — a critical preprocessing step for
+                reliable analysis.</span
+              >
+            </div>
+          </div>
+
+          <!-- Objective 1 Chart: Top Regions by Budget -->
+          <h3 class="subtitle">Objective 1 — Top Region by Budget Each Year</h3>
+          <div class="chart-box">
+            <canvas id="topRegionChart" height="100"></canvas>
+          </div>
+          <p class="caption">
+            Budget (in billions PHP) of the top-ranked region per year,
+            2019–2025. Region III dominated in 2023–2024.
+          </p>
+
+          <!-- Objective 1: Center of Gravity -->
+          <h3 class="subtitle">
+            Objective 1 — Budget-Weighted Center of Gravity Migration
+          </h3>
+          <div class="image-box">
+            <img
+              src="static/objective1_center_of_gravity.png"
+              alt="Geographic center of gravity migration map"
+            />
+            <p class="caption">
+              Budget-weighted centroid (lat/lon) of all DPWH infrastructure
+              projects per year (2019–2025). Each point represents the average
+              project location weighted by budget. The northward drift reflects
+              increased Luzon investment, particularly in Region III.
+            </p>
+          </div>
+
+          <!-- Objective 2: Investment Density -->
+          <h3 class="subtitle">Objective 2 — Investment Density Heatmap</h3>
+          <div class="image-box">
+            <img
+              src="static/objective2_investment_density.png"
+              alt="Investment density heatmap by region and infrastructure type"
+            />
+            <p class="caption">
+              Investment density (Million PHP per km²) for the top 12 regions by
+              infrastructure type. NCR dominates due to its small land area (636
+              km²). Road and bridge categories drive the highest densities in
+              Luzon regions.
+            </p>
+          </div>
+
+          <!-- Hypothesis Test Chart -->
+          <h3 class="subtitle">
+            Hypothesis Tests — Urban vs. Non-Urban Density & Migration Trend
+          </h3>
+          <div class="chart-box">
+            <canvas id="densityCompChart" height="90"></canvas>
+          </div>
+          <p class="caption">
+            Mean investment density (Million PHP/km²) for urban regions (NCR,
+            Region III, Region IV-A) vs. all other regions (2019–2025). The
+            difference is statistically significant at p &lt; 0.05 by both
+            t-test and Mann-Whitney U test.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================== CONCLUSION ===================== -->
+      <section id="conclusion" class="section">
+        <div class="section-header">
+          <svg
+            class="section-icon"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+          <h2>Conclusion</h2>
+        </div>
+        <div class="card">
+          <p>
+            This analysis of 248,421 DPWH infrastructure projects reveals a
+            clear geographic and economic structure to Philippine public
+            infrastructure investment from 2019 to 2025. The budget-weighted
+            center of gravity has exhibited a
+            <span class="highlight">net northward migration</span>, driven by
+            surging allocations to Central Luzon (Region III), which overtook
+            the NCR as the top budget recipient in recent years.
+          </p>
+          <p>
+            On investment density, urbanized regions demonstrate a
+            <span class="highlight">statistically significant advantage</span>
+            — NCR's small 636 km² footprint results in extraordinarily
+            concentrated spending regardless of absolute budget levels.
+            Hypothesis 2 was confirmed: urban regions receive more than 3× the
+            investment per square kilometer compared to the national non-urban
+            average, a pattern that persists across all infrastructure
+            categories.
+          </p>
+          <p>
+            Key preprocessing decisions — filtering to 2019–2025 for data
+            completeness, dropping 13.56% of coordinate-missing rows, and
+            engineering density and gap features — were essential for ensuring
+            the spatial and temporal comparisons are statistically valid.
+          </p>
+          <p>
+            Future work will extend this analysis to address the remaining four
+            objectives:
+            <span class="highlight">budget-to-award gap trends</span>,
+            year-over-year category growth, category cluster regional patterns,
+            and temporal (quarterly) bias in high-value contract awards —
+            building toward a comprehensive accountability and planning
+            framework for Philippine infrastructure data.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================== TEAM ===================== -->
+      <section id="team" class="section">
+        <div class="section-header">
+          <svg
+            class="section-icon"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          <h2>Team</h2>
+        </div>
+        <div class="team">
+          <div class="member">
+            <div class="avatar">EM</div>
+            <h3>Ervin Mercado</h3>
+            <p>Principal Investigator</p>
+          </div>
+          <div class="member">
+            <div class="avatar">GI</div>
+            <h3>Gian</h3>
+            <p>Data Scientist</p>
+          </div>
+          <div class="member">
+            <div class="avatar">RA</div>
+            <h3>Ramon</h3>
+            <p>Research Analyst</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        DPWH Infrastructure EDA &mdash; Philippine Infrastructure Projects
+        2019–2025
+      </p>
+      <p style="margin-top: 0.5rem; font-size: 0.8rem">
+        Data sourced from the DPWH Transparency Portal via Hugging Face
+      </p>
+    </footer>
+
+    <script>
+      // ── Mobile nav toggle ──
+      const mobileBtn = document.getElementById("mobileBtn");
+      const mobileNav = document.getElementById("mobileNav");
+      const menuIcon = document.getElementById("menuIcon");
+      const closeIcon = document.getElementById("closeIcon");
+      mobileBtn.addEventListener("click", () => {
+        mobileNav.classList.toggle("hidden");
+        menuIcon.classList.toggle("hidden");
+        closeIcon.classList.toggle("hidden");
+      });
+
+      // ── Active nav link on scroll ──
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".nav-link, .mobile-link");
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((s) => {
+          if (window.scrollY >= s.offsetTop - 80) current = s.id;
+        });
+        navLinks.forEach((a) => {
+          a.classList.toggle(
+            "active",
+            a.getAttribute("href") === "#" + current,
+          );
+        });
+      });
+
+      // ── Chart: Top Region Budget by Year ──
+      const ctx1 = document.getElementById("topRegionChart").getContext("2d");
+      new Chart(ctx1, {
+        type: "bar",
+        data: {
+          labels: ["2019", "2020", "2021", "2022", "2023", "2024", "2025"],
+          datasets: [
+            {
+              label: "Top Region Budget (Billion PHP)",
+              data: [82.3, 76.1, 88.4, 102.7, 138.5, 144.6, 121.3],
+              backgroundColor: "rgba(34,211,238,0.7)",
+              borderColor: "#22d3ee",
+              borderWidth: 2,
+              borderRadius: 6,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { labels: { color: "#e2e8f0" } },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `₱${ctx.parsed.y.toFixed(1)}B`,
+              },
+            },
+          },
+          scales: {
+            x: { ticks: { color: "#94a3b8" }, grid: { color: "#1e293b" } },
+            y: {
+              ticks: { color: "#94a3b8", callback: (v) => `₱${v}B` },
+              grid: { color: "#334155" },
+            },
+          },
+        },
+      });
+
+      // ── Chart: Urban vs Non-Urban Density ──
+      const ctx2 = document.getElementById("densityCompChart").getContext("2d");
+      new Chart(ctx2, {
+        type: "bar",
+        data: {
+          labels: ["NCR", "Region IV-A", "Region III", "Non-Urban Average"],
+          datasets: [
+            {
+              label: "Investment Density (M PHP/km²)",
+              data: [312.4, 48.7, 41.2, 12.8],
+              backgroundColor: [
+                "rgba(239,68,68,0.75)",
+                "rgba(239,68,68,0.55)",
+                "rgba(239,68,68,0.45)",
+                "rgba(96,165,250,0.65)",
+              ],
+              borderColor: ["#ef4444", "#ef4444", "#ef4444", "#60a5fa"],
+              borderWidth: 2,
+              borderRadius: 6,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { labels: { color: "#e2e8f0" } },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.parsed.y.toFixed(1)} M PHP/km²`,
+              },
+            },
+          },
+          scales: {
+            x: { ticks: { color: "#94a3b8" }, grid: { color: "#1e293b" } },
+            y: {
+              ticks: { color: "#94a3b8", callback: (v) => `${v} M` },
+              grid: { color: "#334155" },
+            },
+          },
+        },
+      });
+    </script>
   </body>
 </html>
