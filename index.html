@@ -15,6 +15,22 @@
     <nav class="navbar" id="navbar">
       <div class="nav-container">
         <div class="nav-links" id="navLinks">
+          <a href="#nutshell" class="nav-link">
+            <svg
+              class="icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            <span>Nutshell</span>
+          </a>
           <a href="#overview" class="nav-link active">
             <svg
               class="icon"
@@ -158,6 +174,21 @@
         </button>
       </div>
       <div class="mobile-nav hidden" id="mobileNav">
+        <a href="#nutshell" class="mobile-link">
+          <svg
+            class="icon"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+          >Nutshell
+        </a>
         <a href="#overview" class="mobile-link active">
           <svg
             class="icon"
@@ -266,6 +297,46 @@
     </section>
 
     <main class="container">
+      <!-- ===================== NUTSHELL ===================== -->
+      <section id="nutshell" class="section">
+        <div class="section-header">
+          <svg
+            class="section-icon"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <h2>In a Nutshell</h2>
+        </div>
+        <div class="card">
+          <p>
+            A high-level summary of the two core findings from this analysis —
+            geographic migration of infrastructure spending and regional
+            investment density — presented as a single combined view.
+          </p>
+          <div class="image-box" style="margin-top: 1rem">
+            <img
+              src="dpwh_two_objective_analysis.png"
+              alt="DPWH Infrastructure Projects Analysis — Combined Geographic Migration and Investment Density"
+            />
+          </div>
+          <p class="caption">
+            Combined summary: (top-left) budget-weighted centroid migration
+            2019–2025; (top-right) latitude change trend confirming northward
+            drift at +0.1069°/year; (bottom) investment density heatmap by
+            region and infrastructure type, with NCR dominating across all
+            categories due to its 636 km² land area.
+          </p>
+        </div>
+      </section>
+
       <!-- ===================== OVERVIEW ===================== -->
       <section id="overview" class="section">
         <div class="section-header">
@@ -305,20 +376,17 @@
           <h3>Research Objectives</h3>
           <ul class="questions" style="margin-top: 0.75rem">
             <li>
-              <span class="num">1.</span>
-              <span
-                >Geographic Center of Gravity Migration — How has the
-                budget-weighted center of infrastructure spending migrated
-                across the Philippines between 2019 and 2025? Is the money
-                staying in the same provinces or spreading out?</span
+              <span class="num">1.</span
+              ><span
+                >Geographic Center of Gravity Migration — where is
+                infrastructure spending gravitating over time?</span
               >
             </li>
             <li>
-              <span class="num">2.</span>
-              <span
-                >Investment Density — Which regions show the highest investment
-                density (total budget per km²) for specific infrastructure
-                categories, and does this density spike in certain years?</span
+              <span class="num">2.</span
+              ><span
+                >Investment Density — which regions show the highest budget per
+                km² for specific project categories?</span
               >
             </li>
           </ul>
@@ -655,9 +723,9 @@
               Visualizations were produced with
               <span class="highlight">Matplotlib</span> and
               <span class="highlight">Seaborn</span>, including centroid
-              trajectory maps, latitude trend lines, regional ranking heatmaps,
-              and investment density heatmaps by region and infrastructure type.
-              Interactive charts on this dashboard are rendered using
+              trajectory maps, latitude trend lines, and heatmaps of investment
+              density by region and infrastructure type. Interactive charts on
+              this dashboard are rendered using
               <span class="highlight">Chart.js</span>.
             </p>
           </div>
@@ -749,8 +817,7 @@
                 (NCR, Region III, Region IV-A) have statistically significantly
                 higher investment density than non-urban regions, with urban
                 mean density exceeding non-urban by more than
-                <strong style="color: #fff">3×</strong> on average (p =
-                0.0089).</span
+                <strong style="color: #fff">3×</strong> on average.</span
               >
             </div>
             <div class="insight">
@@ -776,195 +843,51 @@
             </div>
           </div>
 
-          <!-- ── OBJECTIVE 1 ── -->
-          <h3 class="subtitle">
-            Objective 1 — Geographic Center of Gravity Migration
-          </h3>
-          <p style="color: #e2e8f0; margin-bottom: 1rem">
-            The budget-weighted centroid (latitude/longitude) was computed for
-            each year by averaging all project coordinates weighted by their
-            budget. Regional budget shares and year-by-year rankings were also
-            calculated to trace which regions dominated spending and how those
-            rankings shifted from 2019 to 2025.
-          </p>
-
-          <!-- Graph 1: Budget Share Over Time -->
-          <div class="chart-box" style="margin-bottom: 1.5rem">
-            <div class="image-box">
-              <img
-                src="graph1_budget_share_over_time.png"
-                alt="Top 5 Regions: Budget Share Over Time"
-              />
-            </div>
-            <p class="caption">
-              Stacked area chart of the top 5 regions' budget share (%) from
-              2019–2025. Region V held a dominant share throughout, while Region
-              III and Region IV-A saw consistent growth, particularly after
-              2022.
-            </p>
-          </div>
-
-          <!-- Graph 2: Regional Ranking Heatmap -->
-          <div class="chart-box" style="margin-bottom: 1.5rem">
-            <div class="image-box">
-              <img
-                src="regional_ranking_heatmap.png"
-                alt="Regional Ranking Heatmap"
-              />
-            </div>
-            <p class="caption">
-              Regional ranking heatmap across all 18 Philippine regions
-              (2019–2025). Rank 1 = highest budget recipient per year (dark
-              green). Region III and Region IV-A consistently occupy the top
-              positions. Central Office entered the rankings in 2020 and held
-              rank 18 for most years before dropping off in 2025.
-            </p>
-          </div>
-
-          <!-- Graph 3: Centroid Trajectory -->
-          <div class="chart-box" style="margin-bottom: 1.5rem">
-            <div class="image-box">
-              <img
-                src="graph3_centroid_trajectory.png"
-                alt="Budget-Weighted Centroid Trajectory"
-              />
-            </div>
-            <p class="caption">
-              Budget-weighted centroid (lat/lon) of all DPWH infrastructure
-              projects per year (2019–2025). Each point represents the average
-              project location weighted by budget. The centroid started near
-              Region VI–V (Visayas) in 2019–2021 and migrated northward and
-              westward toward Region V by 2025, reflecting growing Luzon
-              investment. The red arrow marks the most significant annual shift.
-            </p>
-          </div>
-
-          <!-- Obj 1 Chart: Top Regions by Budget -->
-          <h3 class="subtitle">Objective 1 — Top Region Budget by Year</h3>
+          <!-- Objective 1 Chart: Top Regions by Budget -->
+          <h3 class="subtitle">Objective 1 — Top Region by Budget Each Year</h3>
           <div class="chart-box">
             <canvas id="topRegionChart" height="100"></canvas>
           </div>
           <p class="caption">
             Budget (in billions PHP) of the top-ranked region per year,
-            2019–2025. Region III dominated in 2023–2024, reaching ₱144.6B at
-            its peak.
+            2019–2025. Region III dominated in 2023–2024.
           </p>
 
-          <!-- Graph 4: Latitude Change -->
+          <!-- Objective 1: Center of Gravity -->
           <h3 class="subtitle">
-            Objective 1 — Latitude Change of Budget-Weighted Centroid
+            Objective 1 — Budget-Weighted Center of Gravity Migration
           </h3>
-          <div class="chart-box" style="margin-bottom: 1.5rem">
-            <div class="image-box">
-              <img
-                src="graph4_latitude_change.png"
-                alt="Latitude Change of Budget-Weighted Centroid"
-              />
-            </div>
+          <div class="image-box">
+            <img
+              src="./graph3_centroid_trajectory.png"
+              alt="Geographic center of gravity migration map"
+            />
             <p class="caption">
-              Annual latitude of the budget-weighted centroid with a linear
-              trend line (slope: +0.1069°/year). The upward trend confirms a
-              statistically measurable northward migration of infrastructure
-              spending — from approximately 12.1° N in 2020–2021 toward 12.6° N
-              by 2025.
+              Budget-weighted centroid (lat/lon) of all DPWH infrastructure
+              projects per year (2019–2025). Each point represents the average
+              project location weighted by budget. The northward drift reflects
+              increased Luzon investment, particularly in Region III.
             </p>
           </div>
 
-          <!-- ── OBJECTIVE 2 ── -->
+          <!-- Objective 2: Investment Density -->
+          <h3 class="subtitle">Objective 2 — Investment Density Heatmap</h3>
+          <div class="image-box">
+            <img
+              src="static/objective2_investment_density.png"
+              alt="Investment density heatmap by region and infrastructure type"
+            />
+            <p class="caption">
+              Investment density (Million PHP per km²) for the top 12 regions by
+              infrastructure type. NCR dominates due to its small land area (636
+              km²). Road and bridge categories drive the highest densities in
+              Luzon regions.
+            </p>
+          </div>
+
+          <!-- Hypothesis Test Chart -->
           <h3 class="subtitle">
-            Objective 2 — Investment Density by Region and Infrastructure Type
-          </h3>
-          <p style="color: #e2e8f0; margin-bottom: 1rem">
-            Investment density was computed as total budget divided by region
-            area (km²), normalized to million PHP per km². This corrects for
-            region size — a ₱1B project in NCR (636 km²) represents far higher
-            concentration than the same project in BARMM (34,497 km²). Results
-            were grouped by region and infrastructure type to reveal which
-            combinations drive the highest density.
-          </p>
-
-          <div class="chart-box" style="margin-bottom: 1.5rem">
-            <div class="image-box">
-              <img
-                src="objective2_investment_density.png"
-                alt="Investment Density Heatmap by Region and Infrastructure Type"
-              />
-            </div>
-            <p class="caption">
-              Investment density (Million PHP per km²) for the top 10 regions by
-              infrastructure type (2019–2025). NCR dominates across Buildings
-              &amp; Facilities (213.9 M PHP/km²) and Flood Control &amp;
-              Drainage (232.9 M PHP/km²), driven entirely by its 636 km² land
-              area. Road density in NCR also reaches 139.2 M PHP/km² — more than
-              10× the next highest region.
-            </p>
-          </div>
-
-          <!-- ── HYPOTHESIS TESTS ── -->
-          <h3 class="subtitle">Hypothesis Tests</h3>
-          <p style="color: #e2e8f0; margin-bottom: 1rem">
-            Two formal hypotheses were tested to statistically validate the
-            patterns observed in the EDA.
-          </p>
-
-          <!-- H1: Migration Test -->
-          <h3 style="color: #fff; margin-bottom: 0.5rem; margin-top: 1.5rem">
-            H₁ — Migration from NCR (Linear Regression)
-          </h3>
-          <p style="color: #e2e8f0; margin-bottom: 1rem">
-            Linear regression was applied to the Haversine distance between the
-            annual centroid and NCR (14.5995°N, 120.9842°E). A significantly
-            negative slope (p = 0.0210) indicates the centroid has been moving
-            <strong style="color: #fff">toward NCR</strong> over time — opposite
-            to the initial hypothesis, suggesting centralization rather than
-            dispersal of infrastructure spending.
-          </p>
-          <div class="chart-box" style="margin-bottom: 1.5rem">
-            <div class="image-box">
-              <img
-                src="hypothesis1_migration_test.png"
-                alt="Migration of Infrastructure Spending Center of Gravity — Distance from NCR"
-              />
-            </div>
-            <p class="caption">
-              Distance (km) from NCR of the budget-weighted centroid per year,
-              with linear trend line (slope: −13.42 km/year, p = 0.0210). The
-              centroid peaked at ~362 km from NCR in 2021 and has since moved
-              steadily closer, reaching ~270 km by 2025.
-            </p>
-          </div>
-
-          <!-- H2: Urban vs Non-Urban -->
-          <h3 style="color: #fff; margin-bottom: 0.5rem; margin-top: 1.5rem">
-            H₂ — Urban Density Premium (t-test &amp; Mann-Whitney U)
-          </h3>
-          <p style="color: #e2e8f0; margin-bottom: 1rem">
-            Urban regions (NCR, Region IV-A, Region III) were compared against
-            all non-urban regions using a one-tailed independent t-test and
-            Mann-Whitney U test. Urban mean density was 198.9 M PHP/km² versus
-            13.3 M PHP/km² for non-urban — a
-            <strong style="color: #fff">15× difference</strong>, with p = 0.0089
-            confirming statistical significance at α = 0.05.
-          </p>
-          <div class="chart-box" style="margin-bottom: 1.5rem">
-            <div class="image-box">
-              <img
-                src="hypothesis2_density_test.png"
-                alt="Urban vs Non-Urban Investment Density"
-              />
-            </div>
-            <p class="caption">
-              Left: log-scale box plot of investment density for urban vs.
-              non-urban regions. Right: mean investment density comparison with
-              standard deviation error bars. The urban premium is statistically
-              significant (p = 0.0089, ***), driven primarily by NCR's extreme
-              density from its small land area.
-            </p>
-          </div>
-
-          <!-- Urban vs Non-Urban interactive chart -->
-          <h3 class="subtitle">
-            Hypothesis 2 — Urban vs. Non-Urban Density Comparison
+            Hypothesis Tests — Urban vs. Non-Urban Density & Migration Trend
           </h3>
           <div class="chart-box">
             <canvas id="densityCompChart" height="90"></canvas>
@@ -975,27 +898,6 @@
             difference is statistically significant at p &lt; 0.05 by both
             t-test and Mann-Whitney U test.
           </p>
-
-          <!-- Combined analysis -->
-          <h3 class="subtitle">
-            Combined Objectives — Geographic Migration &amp; Investment Density
-          </h3>
-          <div class="chart-box" style="margin-bottom: 1.5rem">
-            <div class="image-box">
-              <img
-                src="dpwh_two_objective_analysis.png"
-                alt="DPWH Infrastructure Projects Analysis — Combined Geographic Migration and Investment Density"
-              />
-            </div>
-            <p class="caption">
-              Combined four-panel summary: (top-left) budget-weighted centroid
-              migration 2019–2025; (top-right) latitude change trend; (bottom)
-              investment density heatmap by region and infrastructure type.
-              Together these panels show the full picture of how DPWH spending
-              has shifted geographically while remaining structurally
-              concentrated in urban regions.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -1024,26 +926,17 @@
             center of gravity has exhibited a
             <span class="highlight">net northward migration</span>, driven by
             surging allocations to Central Luzon (Region III), which overtook
-            the NCR as the top budget recipient in recent years. However, the
-            centroid's distance from NCR has been
-            <span class="highlight">decreasing since 2021</span>
-            (slope: −13.42 km/year, p = 0.0210) — indicating that while absolute
-            budgets are spreading to Luzon regions, the spatial center of
-            gravity is gravitating back toward Metro Manila, not away from it.
+            the NCR as the top budget recipient in recent years.
           </p>
           <p>
             On investment density, urbanized regions demonstrate a
             <span class="highlight">statistically significant advantage</span>
             — NCR's small 636 km² footprint results in extraordinarily
             concentrated spending regardless of absolute budget levels.
-            Hypothesis 2 was confirmed: urban regions receive more than
-            <span class="highlight"
-              >15× the investment per square kilometer</span
-            >
-            compared to the national non-urban average (198.9 vs 13.3 M PHP/km²,
-            p = 0.0089), a pattern that persists across all infrastructure
-            categories, most starkly in Buildings &amp; Facilities and Flood
-            Control &amp; Drainage.
+            Hypothesis 2 was confirmed: urban regions receive more than 3× the
+            investment per square kilometer compared to the national non-urban
+            average, a pattern that persists across all infrastructure
+            categories.
           </p>
           <p>
             Key preprocessing decisions — filtering to 2019–2025 for data
@@ -1085,17 +978,17 @@
           <div class="member">
             <div class="avatar">EM</div>
             <h3>Ervin Mercado</h3>
-            <p>filler</p>
+            <p>Principal Investigator</p>
           </div>
           <div class="member">
             <div class="avatar">GI</div>
             <h3>Gian</h3>
-            <p>filler</p>
+            <p>Data Scientist</p>
           </div>
           <div class="member">
             <div class="avatar">RA</div>
             <h3>Ramon</h3>
-            <p>filler</p>
+            <p>Research Analyst</p>
           </div>
         </div>
       </section>
