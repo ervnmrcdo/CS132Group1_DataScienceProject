@@ -486,12 +486,12 @@
         <div class="card">
           <div class="stats">
             <div class="stat">
-              <div class="stat-label">Total Projects</div>
-              <div class="stat-value">165,954</div>
+              <div class="stat-label">Total Records</div>
+              <div class="stat-value">248,421</div>
             </div>
             <div class="stat">
-              <div class="stat-label">Total Budget</div>
-              <div class="stat-value">₱4.8T</div>
+              <div class="stat-label">Features (Raw)</div>
+              <div class="stat-value">52</div>
             </div>
             <div class="stat">
               <div class="stat-label">Analysis Period</div>
@@ -502,11 +502,11 @@
               <div class="stat-value">18</div>
             </div>
             <div class="stat">
-              <div class="stat-label">Provinces</div>
+              <div class="stat-label">Provinces Covered</div>
               <div class="stat-value">220</div>
             </div>
             <div class="stat">
-              <div class="stat-label">Source</div>
+              <div class="stat-label">Data Source</div>
               <div class="stat-value">
                 <a
                   href="https://huggingface.co"
@@ -520,34 +520,64 @@
           <p>
             The dataset is sourced from the
             <span class="highlight">DPWH Transparency Portal</span> and covers
-            all 18 regions and 220 provinces. Each record contains budget, award
-            amount, geographic coordinates, infrastructure type, and key dates.
+            infrastructure projects across all 18 administrative regions and 220
+            provinces of the Philippines. Each record contains up to 52
+            attributes including project budget, award amount, geographic
+            coordinates, infrastructure type, and key dates (advertisement, bid
+            submission, contract effectivity, and completion).
           </p>
           <p>
-            Raw data spans 2016–2025, but years prior to 2019 had &lt;80%
-            completeness and were <span class="highlight">excluded</span> to
-            ensure statistical validity.
+            The raw dataset spans 2016–2025, but years prior to 2019 were found
+            to have less than 80% data completeness in core columns (budget,
+            region, coordinates) and were
+            <span class="highlight">excluded from analysis</span>
+            to ensure statistical validity in year-over-year comparisons.
           </p>
+
           <h3 class="subtitle">Key Columns Used</h3>
           <ul class="pre-processing">
-            <li><strong>budget</strong> — Total project budget (PHP)</li>
             <li>
-              <strong>awardAmount</strong> — Actual awarded contract amount
-            </li>
-            <li><strong>region / province</strong> — Geographic identifiers</li>
-            <li>
-              <strong>latitude / longitude</strong> — Project coordinates for
-              spatial analysis
+              <strong style="color: #fff">budget</strong> — Total project budget
+              (PHP)
             </li>
             <li>
-              <strong>infraType</strong> — Infrastructure category (road,
-              bridge, building, etc.)
+              <strong style="color: #fff">abc</strong> — Approved Budget for
+              Contract
             </li>
             <li>
-              <strong>infraYear, startDate, completionDate</strong> — Temporal
-              attributes
+              <strong style="color: #fff">awardAmount</strong> — Actual awarded
+              contract amount
+            </li>
+            <li>
+              <strong style="color: #fff">region / province</strong> —
+              Geographic identifiers
+            </li>
+            <li>
+              <strong style="color: #fff">latitude / longitude</strong> —
+              Project coordinates for spatial analysis
+            </li>
+            <li>
+              <strong style="color: #fff">infraType</strong> — Infrastructure
+              category (road, bridge, building, etc.)
+            </li>
+            <li>
+              <strong style="color: #fff"
+                >infraYear, startDate, completionDate</strong
+              >
+              — Temporal attributes
+            </li>
+            <li>
+              <strong style="color: #fff">advertisementDate</strong> — Used to
+              extract fiscal quarter (Q1–Q4)
             </li>
           </ul>
+
+          <h3 class="subtitle">Sample Data</h3>
+          <div class="embed">
+            <iframe
+              src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQexample/pubhtml?widget=true&headers=false"
+            ></iframe>
+          </div>
         </div>
       </section>
 
@@ -986,36 +1016,78 @@
         </div>
         <div class="card">
           <p>
-            This analysis of 265,954 DPWH infrastructure projects reveals a
+            This analysis of 248,421 DPWH infrastructure projects reveals a
             clear geographic and economic structure to Philippine public
             infrastructure investment from 2019 to 2025. The budget-weighted
             center of gravity has exhibited a
             <span class="highlight">net northward migration</span>, driven by
-            surging allocations to Central Luzon (Region III).
+            surging allocations to Central Luzon (Region III), which overtook
+            the NCR as the top budget recipient in recent years.
           </p>
           <p>
             On investment density, urbanized regions demonstrate a
-            <span class="highlight">statistically significant advantage</span> —
-            NCR's small 636 km² footprint results in extraordinarily
-            concentrated spending.
-            <strong>Hypothesis 2 was confirmed:</strong> urban regions receive
-            more than 15× the investment per square kilometer compared to the
-            non-urban average, a pattern that persists across all infrastructure
+            <span class="highlight">statistically significant advantage</span>
+            — NCR's small 636 km² footprint results in extraordinarily
+            concentrated spending regardless of absolute budget levels.
+            Hypothesis 2 was confirmed: urban regions receive more than 3× the
+            investment per square kilometer compared to the national non-urban
+            average, a pattern that persists across all infrastructure
             categories.
           </p>
           <p>
-            Hypothesis 1 was rejected in direction: spending is concentrating
-            toward NCR, not dispersing. These findings highlight the need for
-            policy interventions to address the urban-rural infrastructure gap.
+            Key preprocessing decisions — filtering to 2019–2025 for data
+            completeness, dropping 13.56% of coordinate-missing rows, and
+            engineering density and gap features — were essential for ensuring
+            the spatial and temporal comparisons are statistically valid.
           </p>
           <p>
-            Future work will extend this analysis to budget-to-award gap trends,
-            year-over-year category growth, and temporal bias in high-value
-            contract awards.
+            Future work will extend this analysis to address the remaining four
+            objectives:
+            <span class="highlight">budget-to-award gap trends</span>,
+            year-over-year category growth, category cluster regional patterns,
+            and temporal (quarterly) bias in high-value contract awards —
+            building toward a comprehensive accountability and planning
+            framework for Philippine infrastructure data.
           </p>
         </div>
       </section>
 
+      <!-- ===================== TEAM ===================== -->
+      <section id="team" class="section">
+        <div class="section-header">
+          <svg
+            class="section-icon"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          <h2>Team</h2>
+        </div>
+        <div class="team">
+          <div class="member">
+            <div class="avatar">EM</div>
+            <h3>Ervin Mercado</h3>
+            <p>Principal Investigator</p>
+          </div>
+          <div class="member">
+            <div class="avatar">GI</div>
+            <h3>Gian</h3>
+            <p>Data Scientist</p>
+          </div>
+          <div class="member">
+            <div class="avatar">RA</div>
+            <h3>Ramon</h3>
+            <p>Research Analyst</p>
+          </div>
+        </div>
+      </section>
       <!-- TEAM -->
       <section id="team" class="section">
         <div class="section-header">
