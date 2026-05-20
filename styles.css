@@ -375,15 +375,16 @@ h3 {
 }
 
 .image-box {
-  display: flex-row;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
 .image-box img {
-  width: 75%;
+  max-width: 45%;
   border-radius: 0.75rem;
   border: 1px solid #475569;
+  display: block;
 }
 
 .caption {
@@ -447,12 +448,11 @@ h3 {
 }
 
 .sdg-container {
-  width: 100%;
   display: flex;
   justify-content: center;
-  gap: 2rem;
 }
 
 .sdg-container img {
-  max-width: 200px;
+  max-height: 150px;
+  gap: 3px;
 }
