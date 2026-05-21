@@ -508,6 +508,19 @@ h3 {
   border: 1px solid #475569;
 }
 
+.references {
+  background: #0f172a;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  padding-left: 3rem;
+  border: 1px solid #475569;
+}
+
+.references li {
+  list-style-type: disc;
+}
+
 .avatar {
   width: 64px;
   height: 64px;
@@ -556,13 +569,13 @@ h3 {
 }
 
 .image-container {
-  width: 20px;
-  height: 25px;
-  border: 1px solid black;
+  overflow: hidden;
 }
 
 .image-container img {
-  width: 100%;
-  height: 100%;
+  max-height: 100px;
+  border-radius: 100%;
+  width: auto;
+  height: auto;
   object-fit: fill;
 }
