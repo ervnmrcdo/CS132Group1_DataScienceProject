@@ -556,10 +556,9 @@ h3 {
 }
 
 .image-container {
-  width: 200px;
-  height: 300px;
+  width: 20px;
+  height: 25px;
   border: 1px solid black;
-  margin-bottom: 25px;
 }
 
 .image-container img {
